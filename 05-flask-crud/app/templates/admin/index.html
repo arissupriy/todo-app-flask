@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Halaman Admin</title>
+</head>
+
+<body>
+    <h2>Selamat Datang, {{username}}</h2>
+    <ul>
+        <li>
+            {% with messages = get_flashed_messages() %} {% if messages %} {% for data in messages %} {{ data }} {% endfor %} {% endif
+            %} {% endwith %}
+            <form action="{{url_for('create_todo')}}" method="POST">
+                <label for="name">Nama Jadwal</label>
+                <input type="text" name="name">
+                <button type="submit">Tambah</button>
+            </form>
+        </li>
+        <li> Daftar Jadwal
+            <ul>
+                {% if todos %} {% for data in todos %}
+                <li>
+                    {% if data[4] == 0 %}
+                    {{data[1]}}
+                    <span>
+                        <form action="{{url_for('delete_todo')}}" method="post">
+                            <input type="hidden" name="id" value="{{data[0]}}">
+                            <button type="submit">Hapus</button>
+                        </form> |
+                        <a href="{{url_for('update_todo', id=data[0])}}">Edit</a> |
+                        <form action="{{url_for('finish_todo')}}" method="post">
+                                <input type="hidden" name="id" value="{{data[0]}}">
+                                <button type="submit">Selesai</button>
+                            </form> |
+                    </span>
+                    {% else %}
+                    <del>{{data[1]}}</del>
+                    <span>
+                        <form action="{{url_for('delete_todo')}}" method="post">
+                            <input type="hidden" name="id" value="{{data[0]}}">
+                            <button type="submit">Hapus</button>
+                        </form>
+                        
+                    </span>
+                    {% endif %}
+                    
+                </li>
+                {% endfor %} {% else %}
+                <li>Anda belum memiliki Jadwal</li>
+                {% endif %}
+
+            </ul>
+        </li>
+        <br/>
+        <li>
+            <a href="#">Lihat Profile</a>
+        </li>
+        <li>
+            <a href="{{url_for('logout')}}">Logout</a>
+        </li>
+    </ul>
+
+</body>
+
+</html>

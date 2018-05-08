@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Halaman Admin</title>
+</head>
+
+<body>
+    {% if data %}
+    <h2>Edit {{data[1]}}</h2>
+    <ul>
+        <form action="{{url_for('edit_todo')}}" method="post">
+            <label for="">Nama Jadwal</label>
+            <input type="text" value="{{data[1]}}" name="name">
+            <input type="hidden" name="id" value="{{data[0]}}">
+
+            <button type="submit">Perbarui</button>
+        </form>
+    </ul>
+    {% else %}
+        <h2>Data tidak ditemukan</h2>
+    {% endif %}
+
+</body>
+
+</html>

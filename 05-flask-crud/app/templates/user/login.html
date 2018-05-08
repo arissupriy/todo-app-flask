@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Halaman Login</title>
+</head>
+<body>
+    <h2>Selamat Datang di halaman login</h2>
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            {% for data in messages %}
+                {{ data }}
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+    <form action="" method="POST">
+        <label for="username">Username</label>
+        <input type="text" id="username" placeholder="username" name="username">
+        
+        <label for="password">Password</label>
+        <input type="password" id="password" placeholder="password" name="password">
+
+        
+
+        <button type="submit">Login</button>
+
+        <p>Belum punya akun?? <b>Daftar <a href="{{url_for('register')}}">disini</a></b></p>
+        
+    </form>
+</body>
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Halaman Register</title>
+</head>
+
+<body>
+    <h2>Selamat Datang di Halaman Register</h2>
+
+
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            {% for data in messages %}
+                {{ data }}
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+
+    <form action="{{url_for('register')}}" method="POST">
+        <label for="name">Nama</label>
+        <input type="text" name="name" id="name">
+        <br/>
+
+        <label for="username">Username</label>
+        <input type="text" name="username" id="username">
+        <br/>
+        <label for="password">Password</label>
+        <input type="password" name="password" id="password">
+        <br/>
+        <button type="submit">Daftar</button>
+
+        <p>Sudah punya akun? <a href="{{url_for('login')}}">Masuk disini</a> </p>
+
+    </form>
+</body>
+
+</html>
