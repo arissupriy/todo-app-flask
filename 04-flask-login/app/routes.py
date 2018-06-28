@@ -12,6 +12,7 @@ def index():
 def login():
     if request.method == 'POST':
         req = request.form
+        
         username = req['username']
         password = req['password']
 
